@@ -8,15 +8,15 @@
 :root{--primary:#1a3a6b;--secondary:#e8621a;--accent:#f4a261;--light:#f4f6fb;--dark:#1a1a2e;--gray:#6c757d;--white:#fff;--shadow:0 4px 24px rgba(0,0,0,.10);--sw:240px}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Segoe UI',Arial,sans-serif;color:var(--dark);overflow-x:hidden;line-height:1.6;}
+body{font-family:'Segoe UI',Arial,sans-serif;color:var(--dark);overflow-x:hidden;line-height:1.6;margin-left:var(--sw)}
 
 /* SIDEBAR */
-.sidebar{position:fixed;left:0;top:0;width:var(--sw);height:100vh;background:var(--primary);z-index:1000;display:flex;flex-direction:column;box-shadow:4px 0 24px rgba(0,0,0,.18);overflow-y:auto;transition:transform .3s ease;transform:translateX(-100%)}
+.sidebar{position:fixed;left:0;top:0;width:var(--sw);height:100vh;background:var(--primary);z-index:1000;display:flex;flex-direction:column;box-shadow:4px 0 24px rgba(0,0,0,.18);overflow-y:auto;transition:transform .3s ease}
 .sidebar-logo{padding:24px 18px 20px;border-bottom:1px solid rgba(255,255,255,.1);text-align:center}
 .sidebar-logo svg{width:100%;height:auto}
 .sidebar-nav{flex:1;padding:18px 0}
 .sidebar-nav a{display:flex;align-items:center;gap:10px;padding:13px 24px;color:rgba(255,255,255,.75);text-decoration:none;font-size:14px;font-weight:500;transition:all .3s;border-left:3px solid transparent}
-.sidebar-nav a:hover,.sidebar-nav a.active{color:#fff;background:rgba(255,255,255,.08);border-left-color:var(--secondary);padding-left:28px}
+.sidebar-nav a:hover{color:#fff;background:rgba(255,255,255,.08);border-left-color:var(--secondary);padding-left:28px}
 .sidebar-nav .nav-icon{font-size:16px;width:22px;text-align:center;flex-shrink:0}
 .sidebar-divider{height:1px;background:rgba(255,255,255,.1);margin:10px 18px}
 .sidebar-bottom{padding:18px}
@@ -26,9 +26,9 @@ body{font-family:'Segoe UI',Arial,sans-serif;color:var(--dark);overflow-x:hidden
 .lang-btn.active,.lang-btn:hover{background:var(--secondary);border-color:var(--secondary)}
 .sidebar-close{display:none;background:none;border:none;color:rgba(255,255,255,.6);font-size:20px;cursor:pointer;padding:4px;position:absolute;top:14px;right:14px}
 
-/* MOBILE TOGGLE */
-.mob-toggle{display:flex;position:fixed;top:14px;left:14px;z-index:1002;background:var(--primary);border:none;border-radius:9px;padding:10px 12px;cursor:pointer;flex-direction:column;gap:5px;box-shadow:0 3px 12px rgba(0,0,0,.22)}
-.mob-toggle span{width:22px;height:2px;background:#fff;border-radius:2px;display:block;transition:all .3s}
+/* MOBILE TOGGLE — hidden on desktop */
+.mob-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:var(--primary);border:none;border-radius:9px;padding:10px 12px;cursor:pointer;flex-direction:column;gap:5px;box-shadow:0 3px 12px rgba(0,0,0,.22)}
+.mob-toggle span{width:22px;height:2px;background:#fff;border-radius:2px;display:block}
 
 /* OVERLAY */
 .sidebar-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.48);z-index:999}
@@ -134,8 +134,8 @@ footer{background:#040a14;color:rgba(255,255,255,.44);padding:30px 5%;text-align
 footer p{font-size:13px;line-height:1.78}
 .ft{color:var(--accent);font-weight:600}
 
-/* WHATSAPP */
-.wa-widget{position:fixed;bottom:26px;left:26px;z-index:998;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+/* WHATSAPP — desktop: after sidebar; mobile: bottom left */
+.wa-widget{position:fixed;bottom:26px;left:260px;z-index:998;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
 .wa-btn{width:54px;height:54px;background:#25D366;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.45);transition:all .3s}
 .wa-btn:hover{transform:scale(1.1)}
 .wa-popup{background:#fff;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.18);overflow:hidden;width:278px;display:none;margin-bottom:4px}
@@ -180,7 +180,7 @@ footer p{font-size:13px;line-height:1.78}
 </head>
 <body>
 
-<!-- MOBILE TOGGLE -->
+<!-- MOBILE TOGGLE ONLY -->
 <button class="mob-toggle" id="mobToggle" onclick="toggleSidebar()">
   <span></span><span></span><span></span>
 </button>
@@ -188,11 +188,9 @@ footer p{font-size:13px;line-height:1.78}
 <!-- OVERLAY -->
 <div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
 
-<!-- SIDEBAR -->
+<!-- FIXED SIDEBAR -->
 <div class="sidebar" id="sidebar">
   <button class="sidebar-close" onclick="toggleSidebar()">✕</button>
-
-  <!-- Logo -->
   <div class="sidebar-logo">
     <svg viewBox="0 0 200 72" xmlns="http://www.w3.org/2000/svg">
       <rect x="0" y="0" width="200" height="72" rx="8" fill="rgba(255,255,255,0.07)"/>
@@ -202,8 +200,6 @@ footer p{font-size:13px;line-height:1.78}
       <text x="105" y="65" text-anchor="middle" fill="rgba(255,255,255,0.38)" font-family="Arial,sans-serif" font-size="7.5" letter-spacing="1.2">VISION SPORTS & EDUCATIONAL ASSOC.</text>
     </svg>
   </div>
-
-  <!-- Nav Links -->
   <nav class="sidebar-nav">
     <a href="#about" onclick="closeSidebar()"><span class="nav-icon">🏛️</span><span data-en="About" data-hi="परिचय" data-mr="परिचय">About</span></a>
     <a href="#focus" onclick="closeSidebar()"><span class="nav-icon">🎯</span><span data-en="Focus Areas" data-hi="फोकस क्षेत्र" data-mr="फोकस क्षेत्र">Focus Areas</span></a>
@@ -211,10 +207,7 @@ footer p{font-size:13px;line-height:1.78}
     <a href="#team" onclick="closeSidebar()"><span class="nav-icon">👥</span><span data-en="Our Team" data-hi="हमारी टीम" data-mr="आमची टीम">Our Team</span></a>
     <a href="#contact" onclick="closeSidebar()"><span class="nav-icon">📞</span><span data-en="Contact" data-hi="संपर्क" data-mr="संपर्क">Contact</span></a>
   </nav>
-
   <div class="sidebar-divider"></div>
-
-  <!-- Language Switcher -->
   <div class="sidebar-bottom">
     <div class="lang-label">Language</div>
     <div class="lang-switcher">
@@ -228,7 +221,6 @@ footer p{font-size:13px;line-height:1.78}
 <!-- MAIN CONTENT -->
 <div class="main-content">
 
-<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-inner">
     <div class="hero-logo-wrap">
@@ -250,7 +242,6 @@ footer p{font-size:13px;line-height:1.78}
   </div>
 </section>
 
-<!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-grid">
     <div class="about-text">
@@ -267,12 +258,11 @@ footer p{font-size:13px;line-height:1.78}
     <div class="about-visual">
       <h3 data-en="Our Vision" data-hi="हमारा दृष्टिकोण" data-mr="आमची दृष्टी">Our Vision</h3>
       <p data-en="To create a revolution in sports and community development — nurturing talent from the grassroots level, providing equal opportunities through education and healthcare, empowering women and children, and enabling every individual to live a life of dignity and purpose." data-hi="खेल और सामुदायिक विकास में क्रांति लाना — जमीनी स्तर से प्रतिभाओं को पोषित करना, शिक्षा और स्वास्थ्य में समान अवसर प्रदान करना, महिलाओं और बच्चों को सशक्त बनाना।" data-mr="क्रीडा आणि सामुदायिक विकासात क्रांती घडवणे — तळागाळातून प्रतिभा जोपासणे, शिक्षण आणि आरोग्यात समान संधी देणे.">To create a revolution in sports and community development — nurturing talent from the grassroots level, providing equal opportunities through education and healthcare, empowering women and children, and enabling every individual to live a life of dignity and purpose.</p>
-      <div class="reg-badge">📜 <span data-en="Registered under Societies Registration Act, 1860 | Aurangabad Region, Maharashtra" data-hi="सोसायटी पंजीकरण अधिनियम, 1860 के तहत पंजीकृत | औरंगाबाद क्षेत्र, महाराष्ट्र" data-mr="सोसायटी नोंदणी कायदा, १८६० अंतर्गत नोंदणीकृत | औरंगाबाद प्रदेश, महाराष्ट्र">Registered under Societies Registration Act, 1860 | Aurangabad Region, Maharashtra</span></div>
+      <div class="reg-badge">📜 <span data-en="Registered under Societies Registration Act, 1860 | Aurangabad Region, Maharashtra" data-hi="सोसायटी पंजीकरण अधिनियम, 1860 के तहत पंजीकृत" data-mr="सोसायटी नोंदणी कायदा, १८६० अंतर्गत नोंदणीकृत">Registered under Societies Registration Act, 1860 | Aurangabad Region, Maharashtra</span></div>
     </div>
   </div>
 </section>
 
-<!-- FOCUS AREAS -->
 <section class="focus" id="focus">
   <div class="tc" style="max-width:1180px;margin:0 auto 44px">
     <p class="sec-tag" data-en="WHAT WE DO" data-hi="हम क्या करते हैं" data-mr="आम्ही काय करतो">WHAT WE DO</p>
@@ -284,20 +274,19 @@ footer p{font-size:13px;line-height:1.78}
       <span class="pri-badge" data-en="★ PRIMARY FOCUS" data-hi="★ प्राथमिक फोकस" data-mr="★ प्राथमिक फोकस">★ PRIMARY FOCUS</span>
       <span class="area-icon">🏏</span>
       <h3 data-en="Cricket Development" data-hi="क्रिकेट विकास" data-mr="क्रिकेट विकास">Cricket Development</h3>
-      <p data-en="At Vision Sports and Educational Association, we firmly believe that exceptional talent must never be constrained by financial circumstance. Our cricket development programme is built on a singular conviction — that every deserving young cricketer, regardless of their economic background, deserves access to professional-grade coaching, structured training, and a clear pathway to the highest levels of the game. We provide fully subsidised and free-of-charge cricket coaching to talented youth from underprivileged communities across Chhatrapati Sambhajinagar and the surrounding regions. Under the guidance of experienced and qualified coaches, our players undergo rigorous technical training, tactical development, physical conditioning, and mental strength building — equipping them to compete and excel at the district, state, and national level." data-hi="विजन स्पोर्ट्स एंड एजुकेशनल एसोसिएशन में, हम दृढ़ता से मानते हैं कि असाधारण प्रतिभा को वित्तीय परिस्थितियों से कभी बाधित नहीं होना चाहिए। हम आर्थिक रूप से वंचित युवा क्रिकेटरों को पूरी तरह से निःशुल्क पेशेवर कोचिंग प्रदान करते हैं।" data-mr="विजन स्पोर्ट्स अँड एज्युकेशनल असोसिएशनमध्ये, आम्ही ठामपणे मानतो की असाधारण प्रतिभा आर्थिक परिस्थितीमुळे कधीही मर्यादित होऊ नये. आम्ही वंचित समुदायातील प्रतिभावान युवा क्रिकेटपटूंना पूर्णपणे मोफत व्यावसायिक प्रशिक्षण देतो.">At Vision Sports and Educational Association, we firmly believe that exceptional talent must never be constrained by financial circumstance. Our cricket development programme is built on a singular conviction — that every deserving young cricketer, regardless of their economic background, deserves access to professional-grade coaching, structured training, and a clear pathway to the highest levels of the game. We provide fully subsidised and free-of-charge cricket coaching to talented youth from underprivileged communities across Chhatrapati Sambhajinagar and the surrounding regions. Under the guidance of experienced and qualified coaches, our players undergo rigorous technical training, tactical development, physical conditioning, and mental strength building — equipping them to compete and excel at the district, state, and national level.</p>
-      <div class="sports-tags"><span class="s-tag" data-en="🏏 Cricket" data-hi="🏏 क्रिकेट" data-mr="🏏 क्रिकेट">🏏 Cricket</span></div>
+      <p data-en="At Vision Sports and Educational Association, we firmly believe that exceptional talent must never be constrained by financial circumstance. Our cricket development programme is built on a singular conviction — that every deserving young cricketer, regardless of their economic background, deserves access to professional-grade coaching, structured training, and a clear pathway to the highest levels of the game. We provide fully subsidised and free-of-charge cricket coaching to talented youth from underprivileged communities across Chhatrapati Sambhajinagar and the surrounding regions. Under the guidance of experienced and qualified coaches, our players undergo rigorous technical training, tactical development, physical conditioning, and mental strength building — equipping them to compete and excel at the district, state, and national level." data-hi="हम दृढ़ता से मानते हैं कि असाधारण प्रतिभा को वित्तीय परिस्थितियों से कभी बाधित नहीं होना चाहिए। हम आर्थिक रूप से वंचित युवा क्रिकेटरों को पूरी तरह से निःशुल्क पेशेवर कोचिंग प्रदान करते हैं।" data-mr="आम्ही ठामपणे मानतो की असाधारण प्रतिभा आर्थिक परिस्थितीमुळे कधीही मर्यादित होऊ नये. आम्ही वंचित समुदायातील प्रतिभावान युवा क्रिकेटपटूंना पूर्णपणे मोफत व्यावसायिक प्रशिक्षण देतो.">At Vision Sports and Educational Association, we firmly believe that exceptional talent must never be constrained by financial circumstance. Our cricket development programme is built on a singular conviction — that every deserving young cricketer, regardless of their economic background, deserves access to professional-grade coaching, structured training, and a clear pathway to the highest levels of the game. We provide fully subsidised and free-of-charge cricket coaching to talented youth from underprivileged communities across Chhatrapati Sambhajinagar and the surrounding regions. Under the guidance of experienced and qualified coaches, our players undergo rigorous technical training, tactical development, physical conditioning, and mental strength building — equipping them to compete and excel at the district, state, and national level.</p>
+      <div class="sports-tags"><span class="s-tag">🏏 Cricket</span></div>
     </div>
     <div class="area-card"><span class="area-icon">📚</span><h3 data-en="Education &amp; Literacy" data-hi="शिक्षा और साक्षरता" data-mr="शिक्षण आणि साक्षरता">Education &amp; Literacy</h3><p data-en="Supporting neglected children in literacy, establishing schools and colleges, and providing free computer education for unemployed youth from underprivileged communities." data-hi="उपेक्षित बच्चों को साक्षरता में सहायता, स्कूलों और कॉलेजों की स्थापना, और वंचित युवाओं को मुफ्त कंप्यूटर शिक्षा।" data-mr="उपेक्षित मुलांना साक्षरतेत आधार, शाळा आणि महाविद्यालये स्थापन करणे, वंचित तरुणांना मोफत संगणक शिक्षण.">Supporting neglected children in literacy, establishing schools and colleges, and providing free computer education for unemployed youth from underprivileged communities.</p></div>
     <div class="area-card"><span class="area-icon">🏥</span><h3 data-en="Health &amp; Medical Aid" data-hi="स्वास्थ्य और चिकित्सा" data-mr="आरोग्य आणि वैद्यकीय मदत">Health &amp; Medical Aid</h3><p data-en="Free monthly medical camps in rural villages via mobile medical units. HIV/AIDS rehabilitation programs, preventive care and plans to establish hospitals in rural areas." data-hi="मोबाइल मेडिकल यूनिट के माध्यम से ग्रामीण गांवों में मासिक मुफ्त चिकित्सा शिविर।" data-mr="मोबाईल वैद्यकीय युनिटद्वारे ग्रामीण गावांमध्ये मासिक मोफत शिबिरे.">Free monthly medical camps in rural villages via mobile medical units. HIV/AIDS rehabilitation programs, preventive care and plans to establish hospitals in rural areas.</p></div>
     <div class="area-card"><span class="area-icon">👩</span><h3 data-en="Women Empowerment" data-hi="महिला सशक्तीकरण" data-mr="महिला सक्षमीकरण">Women Empowerment</h3><p data-en="Vocational training in tailoring, basket making, handicrafts, embroidery, candle making and more — creating economic independence for women across rural Maharashtra." data-hi="सिलाई, टोकरी बनाना, हस्तशिल्प, कढ़ाई में प्रशिक्षण — ग्रामीण महाराष्ट्र में महिलाओं की आर्थिक स्वतंत्रता।" data-mr="शिलाई, टोपली बनवणे, हस्तकला, भरतकाम प्रशिक्षण — ग्रामीण महाराष्ट्रातील महिलांना आर्थिक स्वातंत्र्य.">Vocational training in tailoring, basket making, handicrafts, embroidery, candle making and more — creating economic independence for women across rural Maharashtra.</p></div>
-    <div class="area-card"><span class="area-icon">🧒</span><h3 data-en="Child Welfare" data-hi="बाल कल्याण" data-mr="बाल कल्याण">Child Welfare</h3><p data-en="Nutritional support for children with HIV/AIDS and TB. Orphanages, caring homes, day care centers, pre-school centers and nurturing home environments for growth." data-hi="एचआईवी/एड्स और टीबी से पीड़ित बच्चों के लिए पोषण सहायता। अनाथालय, डे केयर सेंटर और पोषणकारी वातावरण।" data-mr="एचआयव्ही/एड्स आणि क्षयरोगग्रस्त मुलांसाठी पोषण आधार. अनाथालये, डे केअर सेंटर आणि पोषक वातावरण.">Nutritional support for children with HIV/AIDS and TB. Orphanages, caring homes, day care centers, pre-school centers and nurturing home environments for growth.</p></div>
-    <div class="area-card"><span class="area-icon">🌾</span><h3 data-en="Rural Development" data-hi="ग्रामीण विकास" data-mr="ग्रामीण विकास">Rural Development</h3><p data-en="R.O. Water Plants in rural areas for clean drinking water. Awareness about health and basic rights, and full relief support during natural calamities." data-hi="स्वच्छ पेयजल के लिए आरओ वाटर प्लांट। स्वास्थ्य और अधिकारों के बारे में जागरूकता और आपदाओं में राहत।" data-mr="स्वच्छ पेयजलासाठी आरओ वॉटर प्लांट. आरोग्य आणि हक्कांबद्दल जागरूकता आणि आपत्तींमध्ये मदत.">R.O. Water Plants in rural areas for clean drinking water. Awareness about health and basic rights, and full relief support during natural calamities.</p></div>
-    <div class="area-card"><span class="area-icon">🤝</span><h3 data-en="Community Welfare" data-hi="सामुदायिक कल्याण" data-mr="सामुदायिक कल्याण">Community Welfare</h3><p data-en="Physiotherapy centers, rehabilitation facilities, old age homes, widows caring homes, free libraries, and family counseling — building stronger communities." data-hi="फिजियोथेरेपी केंद्र, पुनर्वास सुविधाएं, वृद्धाश्रम, विधवा देखभाल घर, मुफ्त पुस्तकालय और परिवार परामर्श।" data-mr="फिजिओथेरपी केंद्रे, पुनर्वसन सुविधा, वृद्धाश्रम, विधवा काळजी गृहे, मोफत ग्रंथालये आणि कुटुंब समुपदेशन.">Physiotherapy centers, rehabilitation facilities, old age homes, widows caring homes, free libraries, and family counseling — building stronger communities.</p></div>
+    <div class="area-card"><span class="area-icon">🧒</span><h3 data-en="Child Welfare" data-hi="बाल कल्याण" data-mr="बाल कल्याण">Child Welfare</h3><p data-en="Nutritional support for children with HIV/AIDS and TB. Orphanages, caring homes, day care centers, pre-school centers and nurturing home environments for growth." data-hi="एचआईवी/एड्स और टीबी से पीड़ित बच्चों के लिए पोषण सहायता। अनाथालय, डे केयर सेंटर।" data-mr="एचआयव्ही/एड्स आणि क्षयरोगग्रस्त मुलांसाठी पोषण आधार. अनाथालये, डे केअर सेंटर.">Nutritional support for children with HIV/AIDS and TB. Orphanages, caring homes, day care centers, pre-school centers and nurturing home environments for growth.</p></div>
+    <div class="area-card"><span class="area-icon">🌾</span><h3 data-en="Rural Development" data-hi="ग्रामीण विकास" data-mr="ग्रामीण विकास">Rural Development</h3><p data-en="R.O. Water Plants in rural areas for clean drinking water. Awareness about health and basic rights, and full relief support during natural calamities." data-hi="स्वच्छ पेयजल के लिए आरओ वाटर प्लांट। स्वास्थ्य और अधिकारों के बारे में जागरूकता।" data-mr="स्वच्छ पेयजलासाठी आरओ वॉटर प्लांट. आरोग्य आणि हक्कांबद्दल जागरूकता.">R.O. Water Plants in rural areas for clean drinking water. Awareness about health and basic rights, and full relief support during natural calamities.</p></div>
+    <div class="area-card"><span class="area-icon">🤝</span><h3 data-en="Community Welfare" data-hi="सामुदायिक कल्याण" data-mr="सामुदायिक कल्याण">Community Welfare</h3><p data-en="Physiotherapy centers, rehabilitation facilities, old age homes, widows caring homes, free libraries, and family counseling — building stronger communities." data-hi="फिजियोथेरेपी केंद्र, पुनर्वास सुविधाएं, वृद्धाश्रम, मुफ्त पुस्तकालय और परिवार परामर्श।" data-mr="फिजिओथेरपी केंद्रे, पुनर्वसन सुविधा, वृद्धाश्रम, मोफत ग्रंथालये आणि कुटुंब समुपदेशन.">Physiotherapy centers, rehabilitation facilities, old age homes, widows caring homes, free libraries, and family counseling — building stronger communities.</p></div>
     <div class="area-card"><span class="area-icon">💡</span><h3 data-en="Poverty Relief" data-hi="गरीबी निवारण" data-mr="दारिद्र्य निवारण">Poverty Relief</h3><p data-en="Relief of poverty through promotion of Basic Education, Literature, Science and Fine Arts. Family counseling and youth rehabilitation institutions for dignified living." data-hi="बुनियादी शिक्षा, साहित्य, विज्ञान और ललित कलाओं के प्रचार के माध्यम से गरीबी उन्मूलन।" data-mr="मूलभूत शिक्षा, साहित्य, विज्ञान आणि ललित कलांच्या प्रोत्साहनाद्वारे दारिद्र्य निवारण.">Relief of poverty through promotion of Basic Education, Literature, Science and Fine Arts. Family counseling and youth rehabilitation institutions for dignified living.</p></div>
   </div>
 </section>
 
-<!-- PROGRAMS -->
 <section class="programs" id="programs">
   <div class="tc" style="max-width:1180px;margin:0 auto 44px">
     <p class="sec-tag" data-en="INITIATIVES" data-hi="पहल" data-mr="उपक्रम">INITIATIVES</p>
@@ -307,14 +296,13 @@ footer p{font-size:13px;line-height:1.78}
   <div class="prog-grid">
     <div class="prog-card"><div class="prog-num">1</div><div><h4 data-en="Cricket Coaching Programme" data-hi="क्रिकेट कोचिंग कार्यक्रम" data-mr="क्रिकेट प्रशिक्षण कार्यक्रम">Cricket Coaching Programme</h4><p data-en="Free professional cricket coaching for underprivileged youth — structured training by experienced coaches targeting district, state and national competitions." data-hi="वंचित युवाओं के लिए मुफ्त पेशेवर क्रिकेट कोचिंग।" data-mr="वंचित तरुणांसाठी मोफत व्यावसायिक क्रिकेट प्रशिक्षण.">Free professional cricket coaching for underprivileged youth — structured training by experienced coaches targeting district, state and national competitions.</p></div></div>
     <div class="prog-card"><div class="prog-num">2</div><div><h4 data-en="Free Monthly Medical Camps" data-hi="मुफ्त मासिक चिकित्सा शिविर" data-mr="मोफत मासिक वैद्यकीय शिबिरे">Free Monthly Medical Camps</h4><p data-en="Mobile medical units conducting free health camps every month in rural and backward villages." data-hi="ग्रामीण और पिछड़े गांवों में हर महीने मुफ्त स्वास्थ्य शिविर।" data-mr="ग्रामीण आणि मागास गावांमध्ये दरमहा मोफत आरोग्य शिबिरे.">Mobile medical units conducting free health camps every month in rural and backward villages.</p></div></div>
-    <div class="prog-card"><div class="prog-num">3</div><div><h4 data-en="Women's Vocational Training" data-hi="महिलाओं का व्यावसायिक प्रशिक्षण" data-mr="महिलांचे व्यावसायिक प्रशिक्षण">Women's Vocational Training</h4><p data-en="Cottage industrial training in tailoring, handicrafts, basket making, food products and embroidery for women's economic independence." data-hi="महिलाओं की आर्थिक स्वतंत्रता के लिए सिलाई, हस्तशिल्प, खाद्य उत्पाद और कढ़ाई में प्रशिक्षण।" data-mr="महिलांच्या आर्थिक स्वातंत्र्यासाठी शिलाई, हस्तकला, खाद्यपदार्थ प्रशिक्षण.">Cottage industrial training in tailoring, handicrafts, basket making, food products and embroidery for women's economic independence.</p></div></div>
+    <div class="prog-card"><div class="prog-num">3</div><div><h4 data-en="Women's Vocational Training" data-hi="महिलाओं का व्यावसायिक प्रशिक्षण" data-mr="महिलांचे व्यावसायिक प्रशिक्षण">Women's Vocational Training</h4><p data-en="Cottage industrial training in tailoring, handicrafts, basket making, food products and embroidery for women's economic independence." data-hi="महिलाओं की आर्थिक स्वतंत्रता के लिए सिलाई, हस्तशिल्प और कढ़ाई में प्रशिक्षण।" data-mr="महिलांच्या आर्थिक स्वातंत्र्यासाठी शिलाई, हस्तकला आणि भरतकाम प्रशिक्षण.">Cottage industrial training in tailoring, handicrafts, basket making, food products and embroidery for women's economic independence.</p></div></div>
     <div class="prog-card"><div class="prog-num">4</div><div><h4 data-en="Cricket Tournaments" data-hi="क्रिकेट टूर्नामेंट" data-mr="क्रिकेट स्पर्धा">Cricket Tournaments</h4><p data-en="Organizing cricket competitions at local, state and national level — giving every athlete a platform to represent Maharashtra and India with pride." data-hi="स्थानीय, राज्य और राष्ट्रीय स्तर पर क्रिकेट प्रतियोगिताएं।" data-mr="स्थानिक, राज्य आणि राष्ट्रीय स्तरावर क्रिकेट स्पर्धा.">Organizing cricket competitions at local, state and national level — giving every athlete a platform to represent Maharashtra and India with pride.</p></div></div>
     <div class="prog-card"><div class="prog-num">5</div><div><h4 data-en="Child Welfare &amp; Support" data-hi="बाल कल्याण और सहायता" data-mr="बाल कल्याण आणि आधार">Child Welfare &amp; Support</h4><p data-en="Nutritional and educational care for children with HIV/AIDS and TB, plus safe homes and loving environments for orphans." data-hi="एचआईवी/एड्स और टीबी से पीड़ित बच्चों के लिए पोषण और शैक्षिक देखभाल।" data-mr="एचआयव्ही/एड्स आणि क्षयरोगग्रस्त मुलांसाठी पोषण आणि शैक्षणिक काळजी.">Nutritional and educational care for children with HIV/AIDS and TB, plus safe homes and loving environments for orphans.</p></div></div>
     <div class="prog-card"><div class="prog-num">6</div><div><h4 data-en="Rural Water Initiative" data-hi="ग्रामीण जल पहल" data-mr="ग्रामीण पाणी उपक्रम">Rural Water Initiative</h4><p data-en="Installing R.O. Water Plants in villages providing clean, safe and healthy drinking water to communities that have been denied access." data-hi="गांवों में आरओ वाटर प्लांट स्थापित करना — वंचित समुदायों को स्वच्छ, सुरक्षित पेयजल।" data-mr="गावांमध्ये आरओ वॉटर प्लांट बसवणे — वंचित समुदायांना स्वच्छ, सुरक्षित पेयजल.">Installing R.O. Water Plants in villages providing clean, safe and healthy drinking water to communities that have been denied access.</p></div></div>
   </div>
 </section>
 
-<!-- TEAM -->
 <section class="team" id="team">
   <div class="tc" style="max-width:1180px;margin:0 auto 44px">
     <p class="sec-tag" data-en="LEADERSHIP" data-hi="नेतृत्व" data-mr="नेतृत्व">LEADERSHIP</p>
@@ -332,7 +320,6 @@ footer p{font-size:13px;line-height:1.78}
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="tc" style="max-width:1100px;margin:0 auto 40px">
     <p class="sec-tag" style="color:var(--accent);justify-content:center" data-en="REACH US" data-hi="हमसे संपर्क करें" data-mr="आमच्याशी संपर्क करा">REACH US</p>
@@ -373,7 +360,6 @@ footer p{font-size:13px;line-height:1.78}
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo-wrap">
     <svg class="footer-logo-svg" viewBox="0 0 500 175" xmlns="http://www.w3.org/2000/svg">
@@ -393,22 +379,15 @@ footer p{font-size:13px;line-height:1.78}
 
 </div><!-- end main-content -->
 
-<!-- WHATSAPP WIDGET -->
+<!-- WHATSAPP -->
 <div class="wa-widget">
   <div class="wa-popup" id="waPopup">
-    <div class="wa-ph">
-      <span>💬 Chat with us on WhatsApp</span>
-      <button onclick="toggleWA()">✕</button>
-    </div>
+    <div class="wa-ph"><span>💬 Chat with us on WhatsApp</span><button onclick="toggleWA()">✕</button></div>
     <a href="https://wa.me/919637753554?text=Hello%20VSEA%2C%20I%20would%20like%20to%20get%20in%20touch%20with%20you." target="_blank" class="wa-link">
-      <div class="wa-av">DK</div>
-      <div><div class="wa-nm">Dyneshwar Kadam</div><div class="wa-rl">President</div></div>
-      <span class="wa-arr">→</span>
+      <div class="wa-av">DK</div><div><div class="wa-nm">Dyneshwar Kadam</div><div class="wa-rl">President</div></div><span class="wa-arr">→</span>
     </a>
     <a href="https://wa.me/919130555981?text=Hello%20VSEA%2C%20I%20would%20like%20to%20get%20in%20touch%20with%20you." target="_blank" class="wa-link">
-      <div class="wa-av">AL</div>
-      <div><div class="wa-nm">Akash Lokhande</div><div class="wa-rl">Secretary</div></div>
-      <span class="wa-arr">→</span>
+      <div class="wa-av">AL</div><div><div class="wa-nm">Akash Lokhande</div><div class="wa-rl">Secretary</div></div><span class="wa-arr">→</span>
     </a>
   </div>
   <button class="wa-btn" onclick="toggleWA()" title="Chat on WhatsApp">
@@ -458,6 +437,7 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
     e.preventDefault();
     var t=document.querySelector(a.getAttribute('href'));
     if(t) t.scrollIntoView({behavior:'smooth'});
+    closeSidebar();
   });
 });
 window.addEventListener('scroll',function(){
