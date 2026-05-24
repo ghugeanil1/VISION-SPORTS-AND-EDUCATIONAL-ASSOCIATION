@@ -29,7 +29,7 @@ nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(26,58,107,.97);
 .hero-inner{position:relative;z-index:1;max-width:860px;margin:0 auto}
 .hero-logo-wrap{display:flex;justify-content:center;margin-bottom:32px}
 .hero-logo-svg{width:min(480px,90%);height:auto;filter:drop-shadow(0 8px 28px rgba(232,98,26,.35))}
-.hero-trust-name{font-size:clamp(18px,3.5vw,38px);font-weight:900;color:#fff;letter-spacing:3px;text-transform:uppercase;line-height:1.18;margin-bottom:14px;text-shadow:0 2px 20px rgba(0,0,0,.3)}
+.hero-trust-name{font-size:clamp(12px,1.5vw,20px);font-weight:900;color:#fff;letter-spacing:1px;text-transform:uppercase;line-height:1.18;margin-bottom:14px;text-shadow:0 2px 20px rgba(0,0,0,.3);white-space:nowrap}
 .hero-tagline{font-size:clamp(14px,2.2vw,18px);color:var(--accent);font-weight:500;font-style:italic;margin-bottom:34px}
 .hero-btns{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
 .btn-p{background:var(--secondary);color:#fff;padding:13px 30px;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px;transition:all .3s;display:inline-block}
@@ -114,6 +114,22 @@ footer{background:#040a14;color:rgba(255,255,255,.44);padding:30px 5%;text-align
 .footer-logo-svg{width:min(380px,85%);height:auto}
 footer p{font-size:13px;line-height:1.78}
 .ft{color:var(--accent);font-weight:600}
+.wa-widget{position:fixed;bottom:80px;right:26px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.wa-btn{width:54px;height:54px;background:#25D366;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.45);transition:all .3s}
+.wa-btn:hover{transform:scale(1.1);box-shadow:0 6px 22px rgba(37,211,102,.55)}
+.wa-popup{background:#fff;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.18);overflow:hidden;width:278px;display:none;margin-bottom:4px}
+.wa-popup.open{display:block;animation:fadeUp .25s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.wa-ph{background:#25D366;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.wa-ph span{color:#fff;font-weight:700;font-size:13.5px}
+.wa-ph button{background:none;border:none;color:rgba(255,255,255,.85);cursor:pointer;font-size:18px;line-height:1}
+.wa-link{display:flex;align-items:center;gap:12px;padding:14px 16px;text-decoration:none;transition:background .2s;border-bottom:1px solid #f2f2f2}
+.wa-link:last-child{border-bottom:none}
+.wa-link:hover{background:#f0fff4}
+.wa-av{width:44px;height:44px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;flex-shrink:0}
+.wa-nm{font-size:13.5px;font-weight:700;color:#1a1a2e}
+.wa-rl{font-size:11.5px;color:#666;margin-top:2px}
+.wa-arr{color:#25D366;font-size:16px;margin-left:auto;font-weight:700}
 .scroll-top{position:fixed;bottom:26px;right:26px;width:42px;height:42px;background:var(--secondary);color:#fff;border:none;border-radius:10px;font-size:18px;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(232,98,26,.4);transition:all .3s;z-index:999}
 .scroll-top:hover{transform:translateY(-3px)}
 @media(max-width:900px){.about-grid{grid-template-columns:1fr}.areas-grid{grid-template-columns:1fr 1fr}.area-card.primary-card{grid-column:span 2}.contact-grid{grid-template-columns:1fr}}
@@ -267,11 +283,13 @@ footer p{font-size:13px;line-height:1.78}
   <div class="tc" style="max-width:1100px;margin:0 auto 40px">
     <p class="sec-tag" style="color:var(--accent);justify-content:center" data-en="REACH US" data-hi="हमसे संपर्क करें" data-mr="आमच्याशी संपर्क करा">REACH US</p>
     <h2 class="sec-h light" data-en="Get In Touch" data-hi="संपर्क करें" data-mr="संपर्क करा">Get In Touch</h2>
-    <p class="sec-p" data-en="Whether you want to volunteer, donate or collaborate — we'd love to hear from you." data-hi="चाहे आप स्वयंसेवा, दान या सहयोग करना चाहते हों — हम आपसे सुनना पसंद करेंगे।" data-mr="स्वयंसेवा, देणगी किंवा सहकार्य — आम्हाला तुमच्याकडून ऐकायला आवडेल.">Whether you want to volunteer, donate or collaborate — we'd love to hear from you.</p>
+    <p class="sec-p" style="max-width:none;white-space:nowrap" data-en="Whether you want to volunteer, donate or collaborate — we'd love to hear from you." data-hi="चाहे आप स्वयंसेवा, दान या सहयोग करना चाहते हों — हम आपसे सुनना पसंद करेंगे।" data-mr="स्वयंसेवा, देणगी किंवा सहकार्य — आम्हाला तुमच्याकडून ऐकायला आवडेल.">Whether you want to volunteer, donate or collaborate — we'd love to hear from you.</p>
   </div>
   <div class="contact-grid">
     <div class="c-info">
       <h3 data-en="Contact Information" data-hi="संपर्क जानकारी" data-mr="संपर्क माहिती">Contact Information</h3>
+      <div class="c-detail"><div class="ci">📞</div><p><strong>Dyneshwar Kadam</strong>+91 9637753554</p></div>
+      <div class="c-detail"><div class="ci">📞</div><p><strong>Akash Lokhande</strong>+91 9130555981</p></div>
       <div class="c-detail"><div class="ci">📍</div><p><strong data-en="Address" data-hi="पता" data-mr="पत्ता">Address</strong>c/o Kadam Gopal Dhondiram, Lokshai Colony, H.No.167, Mukundwadi, Chhatrapati Sambhajinagar — 431001</p></div>
       <div class="c-detail"><div class="ci">🏛️</div><p><strong data-en="Registration" data-hi="पंजीकरण" data-mr="नोंदणी">Registration</strong><span data-en="Societies Registration Act, 1860 | Maharashtra" data-hi="सोसायटी पंजीकरण अधिनियम, 1860 | महाराष्ट्र" data-mr="सोसायटी नोंदणी कायदा, १८६० | महाराष्ट्र">Societies Registration Act, 1860 | Maharashtra</span></p></div>
       <div class="c-detail"><div class="ci">📅</div><p><strong data-en="Established" data-hi="स्थापित" data-mr="स्थापना">Established</strong><span data-en="7th December 2021, Aurangabad" data-hi="7 दिसंबर 2021, औरंगाबाद" data-mr="७ डिसेंबर २०२१, औरंगाबाद">7th December 2021, Aurangabad</span></p></div>
@@ -319,10 +337,33 @@ footer p{font-size:13px;line-height:1.78}
   <p style="margin-top:8px;font-size:12px">Made with ❤️ for community development by <span class="ft">Anil Ghuge</span></p>
 </footer>
 
+<div class="wa-widget">
+  <div class="wa-popup" id="waPopup">
+    <div class="wa-ph">
+      <span>💬 Chat with us on WhatsApp</span>
+      <button onclick="toggleWA()">✕</button>
+    </div>
+    <a href="https://wa.me/919637753554?text=Hello%20VSEA%2C%20I%20would%20like%20to%20get%20in%20touch%20with%20you." target="_blank" class="wa-link">
+      <div class="wa-av">DK</div>
+      <div><div class="wa-nm">Dyneshwar Kadam</div><div class="wa-rl">President</div></div>
+      <span class="wa-arr">→</span>
+    </a>
+    <a href="https://wa.me/919130555981?text=Hello%20VSEA%2C%20I%20would%20like%20to%20get%20in%20touch%20with%20you." target="_blank" class="wa-link">
+      <div class="wa-av">AL</div>
+      <div><div class="wa-nm">Akash Lokhande</div><div class="wa-rl">Secretary</div></div>
+      <span class="wa-arr">→</span>
+    </a>
+  </div>
+  <button class="wa-btn" onclick="toggleWA()" title="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </button>
+</div>
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
 var lang='en';
+function toggleWA(){document.getElementById('waPopup').classList.toggle('open');}
+document.addEventListener('click',function(e){var w=document.querySelector('.wa-widget');if(w&&!w.contains(e.target))document.getElementById('waPopup').classList.remove('open');});
 function setLang(l){
   lang=l;
   document.querySelectorAll('[data-'+l+']').forEach(function(el){
