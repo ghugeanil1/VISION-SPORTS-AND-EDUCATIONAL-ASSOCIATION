@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vision Sports and Educational Association | Chhatrapati Sambhajinagar</title>
+<style>
+:root{--primary:#1a3a6b;--secondary:#e8621a;--accent:#f4a261;--light:#f4f6fb;--dark:#1a1a2e;--gray:#6c757d;--white:#fff;--shadow:0 4px 24px rgba(0,0,0,.10)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Arial,sans-serif;color:var(--dark);overflow-x:hidden;line-height:1.6}
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(26,58,107,.97);backdrop-filter:blur(10px);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:68px;box-shadow:0 2px 20px rgba(0,0,0,.18)}
+.nav-brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.nav-logo-svg{width:112px;height:34px;flex-shrink:0}
+.nav-links{display:flex;list-style:none;gap:26px}
+.nav-links a{color:rgba(255,255,255,.82);text-decoration:none;font-size:14px;font-weight:500;transition:color .3s}
+.nav-links a:hover{color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.lang-switcher{display:flex;gap:5px}
+.lang-btn{padding:5px 11px;border:1.5px solid rgba(255,255,255,.28);background:transparent;color:#fff;border-radius:6px;font-size:12px;cursor:pointer;transition:all .25s;font-weight:600}
+.lang-btn.active,.lang-btn:hover{background:var(--secondary);border-color:var(--secondary)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;display:block}
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(135deg,#080f20 0%,#1a3a6b 55%,#0d2240 100%);display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:100px 5% 60px}
+.hero::before{content:'';position:absolute;width:550px;height:550px;background:radial-gradient(circle,rgba(232,98,26,.18) 0%,transparent 70%);top:-80px;right:-80px;border-radius:50%;pointer-events:none}
+.hero::after{content:'';position:absolute;width:380px;height:380px;background:radial-gradient(circle,rgba(232,98,26,.12) 0%,transparent 70%);bottom:-40px;left:-40px;border-radius:50%;pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:860px;margin:0 auto}
+.hero-logo-wrap{display:flex;justify-content:center;margin-bottom:32px}
+.hero-logo-svg{width:min(480px,90%);height:auto;filter:drop-shadow(0 8px 28px rgba(232,98,26,.35))}
+.hero-trust-name{font-size:clamp(12px,1.5vw,20px);font-weight:900;color:#fff;letter-spacing:1px;text-transform:uppercase;line-height:1.18;margin-bottom:14px;text-shadow:0 2px 20px rgba(0,0,0,.3);white-space:nowrap}
+.hero-tagline{font-size:clamp(14px,2.2vw,18px);color:var(--accent);font-weight:500;font-style:italic;margin-bottom:34px}
+.hero-btns{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+.btn-p{background:var(--secondary);color:#fff;padding:13px 30px;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px;transition:all .3s;display:inline-block}
+.btn-p:hover{background:#c95515;transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,98,26,.4)}
+.btn-o{background:rgba(255,255,255,.08);color:#fff;padding:13px 30px;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px;border:1.5px solid rgba(255,255,255,.3);transition:all .3s;display:inline-block}
+.btn-o:hover{border-color:#fff;background:rgba(255,255,255,.15)}
+/* SECTIONS */
+section{padding:84px 5%}
+.sec-tag{color:var(--secondary);font-size:12.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:9px;display:flex;align-items:center;gap:8px}
+.sec-tag::before{content:'';width:20px;height:2px;background:var(--secondary);border-radius:2px;display:inline-block}
+.sec-h{font-size:clamp(24px,3.5vw,40px);font-weight:800;color:var(--primary);line-height:1.1;margin-bottom:12px}
+.sec-h.light{color:#fff}
+.sec-p{color:var(--gray);font-size:15.5px;line-height:1.78;max-width:580px}
+.tc{text-align:center}.tc .sec-p{margin:0 auto}
+/* ABOUT */
+.about{background:var(--light)}
+.about-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-text .sec-p{margin-top:14px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+.stat-card{background:#fff;border-radius:13px;padding:18px 20px;box-shadow:var(--shadow);border-left:4px solid var(--secondary)}
+.stat-card .num{font-size:30px;font-weight:900;color:var(--primary)}
+.stat-card .lbl{font-size:12.5px;color:var(--gray);margin-top:3px}
+.about-visual{background:linear-gradient(145deg,var(--primary),#0a1e40);border-radius:20px;padding:38px;color:#fff;position:relative;overflow:hidden}
+.about-visual::after{content:'🏆';position:absolute;font-size:110px;opacity:.07;bottom:-12px;right:-10px;pointer-events:none}
+.about-visual h3{font-size:20px;font-weight:800;color:var(--accent);margin-bottom:13px}
+.about-visual p{font-size:14.5px;opacity:.83;line-height:1.82}
+.reg-badge{margin-top:20px;background:rgba(255,255,255,.09);border-radius:9px;padding:12px 15px;font-size:13px;display:flex;align-items:center;gap:9px;border-left:3px solid var(--secondary)}
+/* FOCUS */
+.focus{background:#fff}
+.areas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1180px;margin:0 auto}
+.area-card{background:var(--light);border-radius:16px;padding:26px;transition:all .3s;border:2px solid transparent;overflow:hidden}
+.area-card.primary-card{background:linear-gradient(135deg,var(--primary),#0a1e40);color:#fff;grid-column:span 3}
+.area-card:not(.primary-card):hover{border-color:var(--secondary);transform:translateY(-5px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
+.area-icon{font-size:36px;margin-bottom:12px;display:block}
+.area-card h3{font-size:16.5px;font-weight:800;color:var(--primary);margin-bottom:9px}
+.area-card.primary-card h3{color:var(--accent);font-size:21px}
+.area-card p{font-size:13.5px;color:var(--gray);line-height:1.72}
+.area-card.primary-card p{color:rgba(255,255,255,.8)}
+.pri-badge{display:inline-block;background:var(--secondary);color:#fff;font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:10px;letter-spacing:.5px}
+.sports-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
+.s-tag{background:rgba(255,255,255,.14);color:#fff;font-size:12px;padding:4px 11px;border-radius:20px;border:1px solid rgba(255,255,255,.2)}
+/* PROGRAMS */
+.programs{background:var(--light)}
+.prog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;max-width:1180px;margin:0 auto}
+.prog-card{background:#fff;border-radius:13px;padding:22px;box-shadow:var(--shadow);display:flex;align-items:flex-start;gap:14px;transition:all .3s}
+.prog-card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.prog-num{background:var(--secondary);color:#fff;width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0}
+.prog-card h4{font-size:14.5px;font-weight:700;color:var(--primary);margin-bottom:5px}
+.prog-card p{font-size:13px;color:var(--gray)}
+/* TEAM */
+.team{background:#fff}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:17px;max-width:1180px;margin:0 auto}
+.team-card{text-align:center;background:var(--light);border-radius:15px;padding:23px 16px;transition:all .3s}
+.team-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.t-avatar{width:64px;height:64px;background:linear-gradient(135deg,var(--primary),var(--secondary));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:#fff;margin:0 auto 12px}
+.team-card h4{font-size:14.5px;font-weight:700;color:var(--primary);margin-bottom:6px}
+.t-role{display:inline-block;background:rgba(232,98,26,.12);color:var(--secondary);font-size:12px;padding:3px 11px;border-radius:20px;font-weight:600}
+/* CONTACT */
+.contact{background:linear-gradient(135deg,#080f20,#1a3a6b)}
+.contact .sec-h{color:#fff}
+.contact .sec-p{color:rgba(255,255,255,.65)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.55fr;gap:56px;max-width:1100px;margin:0 auto;align-items:start}
+.c-info h3{font-size:18px;font-weight:700;color:var(--accent);margin-bottom:18px}
+.c-detail{display:flex;align-items:flex-start;gap:12px;margin-bottom:18px}
+.c-detail .ci{font-size:20px;margin-top:2px}
+.c-detail p{font-size:14px;color:rgba(255,255,255,.78);line-height:1.6}
+.c-detail strong{color:#fff;display:block;margin-bottom:3px}
+.c-form{background:#fff;border-radius:20px;padding:32px}
+.c-form h3{font-size:18px;font-weight:700;color:var(--primary);margin-bottom:20px}
+.fg{margin-bottom:15px}
+.fg label{display:block;font-size:12.5px;font-weight:700;color:var(--primary);margin-bottom:5px}
+.fg input,.fg textarea,.fg select{width:100%;padding:11px 14px;border:2px solid #e8ecee;border-radius:9px;font-size:14px;font-family:inherit;outline:none;transition:border-color .3s;color:var(--dark);background:#f9fbfc}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--secondary);background:#fff}
+.fg textarea{height:110px;resize:vertical}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.sub-btn{width:100%;padding:13px;background:var(--primary);color:#fff;font-size:15px;font-weight:700;border:none;border-radius:9px;cursor:pointer;transition:all .3s}
+.sub-btn:hover{background:#243f75;transform:translateY(-2px);box-shadow:0 8px 20px rgba(26,58,107,.25)}
+.form-msg{display:none;text-align:center;font-size:13px;margin-top:11px;font-weight:600}
+/* FOOTER */
+footer{background:#040a14;color:rgba(255,255,255,.44);padding:30px 5%;text-align:center}
+.footer-logo-wrap{display:flex;justify-content:center;margin-bottom:18px}
+.footer-logo-svg{width:min(380px,85%);height:auto}
+footer p{font-size:13px;line-height:1.78}
+.ft{color:var(--accent);font-weight:600}
+.wa-widget{position:fixed;bottom:26px;left:26px;z-index:998;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.wa-btn{width:54px;height:54px;background:#25D366;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(37,211,102,.45);transition:all .3s}
+.wa-btn:hover{transform:scale(1.1);box-shadow:0 6px 22px rgba(37,211,102,.55)}
+.wa-popup{background:#fff;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.18);overflow:hidden;width:278px;display:none;margin-bottom:4px}
+.wa-popup.open{display:block;animation:fadeUp .25s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.wa-ph{background:#25D366;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.wa-ph span{color:#fff;font-weight:700;font-size:13.5px}
+.wa-ph button{background:none;border:none;color:rgba(255,255,255,.85);cursor:pointer;font-size:18px;line-height:1}
+.wa-link{display:flex;align-items:center;gap:12px;padding:14px 16px;text-decoration:none;transition:background .2s;border-bottom:1px solid #f2f2f2}
+.wa-link:last-child{border-bottom:none}
+.wa-link:hover{background:#f0fff4}
+.wa-av{width:44px;height:44px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px;flex-shrink:0}
+.wa-nm{font-size:13.5px;font-weight:700;color:#1a1a2e}
+.wa-rl{font-size:11.5px;color:#666;margin-top:2px}
+.wa-arr{color:#25D366;font-size:16px;margin-left:auto;font-weight:700}
+.scroll-top{position:fixed;bottom:26px;right:26px;width:42px;height:42px;background:var(--secondary);color:#fff;border:none;border-radius:10px;font-size:18px;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(232,98,26,.4);transition:all .3s;z-index:999}
+.scroll-top:hover{transform:translateY(-3px)}
+@media(max-width:900px){.about-grid{grid-template-columns:1fr}.areas-grid{grid-template-columns:1fr 1fr}.area-card.primary-card{grid-column:span 2}.contact-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.nav-links{display:none;flex-direction:column;position:absolute;top:68px;left:0;width:100%;background:var(--primary);padding:18px 5%;gap:14px}.nav-links.open{display:flex}.hamburger{display:flex}.areas-grid{grid-template-columns:1fr}.area-card.primary-card{grid-column:span 1}.form-row{grid-template-columns:1fr}.hero-trust-name{letter-spacing:1px}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#home">
+    <svg class="nav-logo-svg" viewBox="0 0 220 68" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="220" height="68" rx="8" fill="#1a3a6b"/>
+      <rect x="0" y="0" width="7" height="68" rx="4" fill="#e8621a"/>
+      <text x="117" y="43" text-anchor="middle" fill="white" font-family="Arial Black,Arial,sans-serif" font-size="30" font-weight="900" letter-spacing="7">VSEA</text>
+      <rect x="14" y="51" width="196" height="3" rx="1.5" fill="#e8621a" opacity="0.65"/>
+    </svg>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" data-en="About" data-hi="परिचय" data-mr="परिचय">About</a></li>
+    <li><a href="#focus" data-en="Focus Areas" data-hi="फोकस क्षेत्र" data-mr="फोकस क्षेत्र">Focus Areas</a></li>
+    <li><a href="#programs" data-en="Programs" data-hi="कार्यक्रम" data-mr="कार्यक्रम">Programs</a></li>
+    <li><a href="#team" data-en="Our Team" data-hi="हमारी टीम" data-mr="आमची टीम">Our Team</a></li>
+    <li><a href="#contact" data-en="Contact" data-hi="संपर्क" data-mr="संपर्क">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('hi')">हि</button>
+      <button class="lang-btn" onclick="setLang('mr')">म</button>
+    </div>
+    <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <!-- New typographic VSEA logo -->
+    <div class="hero-logo-wrap">
+      <svg class="hero-logo-svg" viewBox="0 0 500 175" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="500" height="175" rx="14" fill="#1a3a6b"/>
+        <rect x="0" y="0" width="10" height="175" rx="5" fill="#e8621a"/>
+        <text x="258" y="108" text-anchor="middle" fill="white" font-family="Arial Black,Arial,sans-serif" font-size="84" font-weight="900" letter-spacing="10">VSEA</text>
+        <rect x="18" y="122" width="464" height="5" rx="2.5" fill="#e8621a" opacity="0.68"/>
+        <text x="258" y="148" text-anchor="middle" fill="rgba(255,255,255,0.78)" font-family="Arial,sans-serif" font-size="12.5" letter-spacing="2" font-weight="700">VISION SPORTS AND EDUCATIONAL ASSOCIATION</text>
+        <text x="258" y="166" text-anchor="middle" fill="rgba(255,255,255,0.38)" font-family="Arial,sans-serif" font-size="10" letter-spacing="2">CHHATRAPATI SAMBHAJINAGAR · EST. 2021</text>
+      </svg>
+    </div>
+    <!-- Trust Name -->
+    <h1 class="hero-trust-name" data-en="VISION SPORTS AND EDUCATIONAL ASSOCIATION" data-hi="विजन स्पोर्ट्स एंड एजुकेशनल एसोसिएशन" data-mr="विजन स्पोर्ट्स अँड एज्युकेशनल असोसिएशन">VISION SPORTS AND EDUCATIONAL ASSOCIATION</h1>
+    <!-- Tagline -->
+    <p class="hero-tagline" data-en="Building Champions On the Field &amp; In Life" data-hi="मैदान पर और जीवन में चैंपियन बनाना" data-mr="मैदानात आणि जीवनात चॅम्पियन घडवणे">Building Champions On the Field &amp; In Life</p>
+    <!-- CTA Buttons -->
+    <div class="hero-btns">
+      <a href="#focus" class="btn-p" data-en="Our Focus Areas" data-hi="हमारे फोकस क्षेत्र" data-mr="आमचे फोकस क्षेत्र">Our Focus Areas</a>
+      <a href="#contact" class="btn-o" data-en="Get In Touch" data-hi="संपर्क करें" data-mr="संपर्क करा">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <p class="sec-tag" data-en="WHO WE ARE" data-hi="हम कौन हैं" data-mr="आम्ही कोण आहोत">WHO WE ARE</p>
+      <h2 class="sec-h" data-en="About Vision Sports &amp; Educational Association" data-hi="विजन स्पोर्ट्स एंड एजुकेशनल एसोसिएशन के बारे में" data-mr="विजन स्पोर्ट्स अँड एज्युकेशनल असोसिएशनबद्दल">About Vision Sports &amp; Educational Association</h2>
+      <p class="sec-p" data-en="A registered society dedicated to the holistic development of communities through sports, education, health, and social welfare. Based in Chhatrapati Sambhajinagar, we nurture talent from the grassroots and uplift the underprivileged across Maharashtra." data-hi="खेल, शिक्षा, स्वास्थ्य और सामाजिक कल्याण के माध्यम से समुदायों के समग्र विकास के लिए समर्पित एक पंजीकृत संस्था। छत्रपति संभाजीनगर में स्थित, हम जमीनी स्तर से प्रतिभाओं को निखारते हैं।" data-mr="क्रीडा, शिक्षण, आरोग्य आणि सामाजिक कल्याणाद्वारे समुदायांच्या सर्वांगीण विकासासाठी समर्पित नोंदणीकृत संस्था. छत्रपती संभाजीनगर येथे स्थित, आम्ही तळागाळातून प्रतिभा जोपासतो.">A registered society dedicated to the holistic development of communities through sports, education, health, and social welfare. Based in Chhatrapati Sambhajinagar, we nurture talent from the grassroots and uplift the underprivileged across Maharashtra.</p>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="num">2021</div><div class="lbl" data-en="Year Founded" data-hi="स्थापना वर्ष" data-mr="स्थापना वर्ष">Year Founded</div></div>
+        <div class="stat-card"><div class="num">21+</div><div class="lbl" data-en="Community Programs" data-hi="सामुदायिक कार्यक्रम" data-mr="सामुदायिक कार्यक्रम">Community Programs</div></div>
+        <div class="stat-card"><div class="num">7</div><div class="lbl" data-en="Office Bearers" data-hi="पदाधिकारी" data-mr="पदाधिकारी">Office Bearers</div></div>
+        <div class="stat-card"><div class="num">MH</div><div class="lbl" data-en="Maharashtra Jurisdiction" data-hi="महाराष्ट्र क्षेत्राधिकार" data-mr="महाराष्ट्र क्षेत्राधिकार">Maharashtra Jurisdiction</div></div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <h3 data-en="Our Vision" data-hi="हमारा दृष्टिकोण" data-mr="आमची दृष्टी">Our Vision</h3>
+      <p data-en="To create a revolution in sports and community development — nurturing talent from the grassroots level, providing equal opportunities through education and healthcare, empowering women and children, and enabling every individual to live a life of dignity and purpose." data-hi="खेल और सामुदायिक विकास में क्रांति लाना — जमीनी स्तर से प्रतिभाओं को पोषित करना, शिक्षा और स्वास्थ्य में समान अवसर प्रदान करना, महिलाओं और बच्चों को सशक्त बनाना।" data-mr="क्रीडा आणि सामुदायिक विकासात क्रांती घडवणे — तळागाळातून प्रतिभा जोपासणे, शिक्षण आणि आरोग्यात समान संधी देणे, महिला आणि मुलांना सक्षम करणे.">To create a revolution in sports and community development — nurturing talent from the grassroots level, providing equal opportunities through education and healthcare, empowering women and children, and enabling every individual to live a life of dignity and purpose.</p>
+      <div class="reg-badge">📜 <span data-en="Registered under Societies Registration Act, 1860 | Aurangabad Region, Maharashtra" data-hi="सोसायटी पंजीकरण अधिनियम, 1860 के तहत पंजीकृत | औरंगाबाद क्षेत्र, महाराष्ट्र" data-mr="सोसायटी नोंदणी कायदा, १८६० अंतर्गत नोंदणीकृत | औरंगाबाद प्रदेश, महाराष्ट्र">Registered under Societies Registration Act, 1860 | Aurangabad Region, Maharashtra</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOCUS AREAS -->
+<section class="focus" id="focus">
+  <div class="tc" style="max-width:1180px;margin:0 auto 44px">
+    <p class="sec-tag" data-en="WHAT WE DO" data-hi="हम क्या करते हैं" data-mr="आम्ही काय करतो">WHAT WE DO</p>
+    <h2 class="sec-h" data-en="Our Focus Areas" data-hi="हमारे फोकस क्षेत्र" data-mr="आमचे फोकस क्षेत्र">Our Focus Areas</h2>
+    <p class="sec-p" data-en="From grassroots cricket to community welfare — our work creates lasting impact across multiple domains." data-hi="जमीनी स्तर के क्रिकेट से सामुदायिक कल्याण तक — हमारा काम कई क्षेत्रों में स्थायी प्रभाव बनाता है।" data-mr="तळागाळातील क्रिकेटपासून सामुदायिक कल्याणापर्यंत — आमचे कार्य अनेक क्षेत्रांमध्ये दीर्घकालीन प्रभाव निर्माण करते.">From grassroots cricket to community welfare — our work creates lasting impact across multiple domains.</p>
+  </div>
+  <div class="areas-grid">
+    <!-- PRIMARY: CRICKET ONLY -->
+    <div class="area-card primary-card">
+      <span class="pri-badge" data-en="★ PRIMARY FOCUS" data-hi="★ प्राथमिक फोकस" data-mr="★ प्राथमिक फोकस">★ PRIMARY FOCUS</span>
+      <span class="area-icon">🏏</span>
+      <h3 data-en="Cricket Development" data-hi="क्रिकेट विकास" data-mr="क्रिकेट विकास">Cricket Development</h3>
+      <p data-en="At Vision Sports and Educational Association, we firmly believe that exceptional talent must never be constrained by financial circumstance. Our cricket development programme is built on a singular conviction — that every deserving young cricketer, regardless of their economic background, deserves access to professional-grade coaching, structured training, and a clear pathway to the highest levels of the game. We provide fully subsidised and free-of-charge cricket coaching to talented youth from underprivileged communities across Chhatrapati Sambhajinagar and the surrounding regions. Under the guidance of experienced and qualified coaches, our players undergo rigorous technical training, tactical development, physical conditioning, and mental strength building — equipping them to compete and excel at the district, state, and national level. Our goal is unambiguous: to identify raw talent, nurture it with discipline and dedication, and produce cricketers who will carry the pride of Maharashtra and India onto the national stage." data-hi="विजन स्पोर्ट्स एंड एजुकेशनल एसोसिएशन में, हम दृढ़ता से मानते हैं कि असाधारण प्रतिभा को वित्तीय परिस्थितियों से कभी बाधित नहीं होना चाहिए। हम आर्थिक रूप से वंचित युवा क्रिकेटरों को पूरी तरह से निःशुल्क पेशेवर कोचिंग प्रदान करते हैं — तकनीकी प्रशिक्षण, रणनीतिक विकास और मानसिक दृढ़ता के साथ।" data-mr="विजन स्पोर्ट्स अँड एज्युकेशनल असोसिएशनमध्ये, आम्ही ठामपणे मानतो की असाधारण प्रतिभा आर्थिक परिस्थितीमुळे कधीही मर्यादित होऊ नये. आम्ही वंचित समुदायातील प्रतिभावान युवा क्रिकेटपटूंना पूर्णपणे मोफत व्यावसायिक प्रशिक्षण देतो — तांत्रिक प्रशिक्षण, रणनीतिक विकास आणि मानसिक दृढता यासह.">At Vision Sports and Educational Association, we firmly believe that exceptional talent must never be constrained by financial circumstance. Our cricket development programme is built on a singular conviction — that every deserving young cricketer, regardless of their economic background, deserves access to professional-grade coaching, structured training, and a clear pathway to the highest levels of the game. We provide fully subsidised and free-of-charge cricket coaching to talented youth from underprivileged communities across Chhatrapati Sambhajinagar and the surrounding regions. Under the guidance of experienced and qualified coaches, our players undergo rigorous technical training, tactical development, physical conditioning, and mental strength building — equipping them to compete and excel at the district, state, and national level. Our goal is unambiguous: to identify raw talent, nurture it with discipline and dedication, and produce cricketers who will carry the pride of Maharashtra and India onto the national stage.</p>
+      <div class="sports-tags">
+        <span class="s-tag" data-en="🏏 Cricket" data-hi="🏏 क्रिकेट" data-mr="🏏 क्रिकेट">🏏 Cricket</span>
+      </div>
+    </div>
+    <div class="area-card"><span class="area-icon">📚</span><h3 data-en="Education &amp; Literacy" data-hi="शिक्षा और साक्षरता" data-mr="शिक्षण आणि साक्षरता">Education &amp; Literacy</h3><p data-en="Supporting neglected children in literacy, establishing schools and colleges, and providing free computer education for unemployed youth from underprivileged communities." data-hi="उपेक्षित बच्चों को साक्षरता में सहायता, स्कूलों और कॉलेजों की स्थापना, और वंचित युवाओं को मुफ्त कंप्यूटर शिक्षा।" data-mr="उपेक्षित मुलांना साक्षरतेत आधार, शाळा आणि महाविद्यालये स्थापन करणे, वंचित तरुणांना मोफत संगणक शिक्षण.">Supporting neglected children in literacy, establishing schools and colleges, and providing free computer education for unemployed youth from underprivileged communities.</p></div>
+    <div class="area-card"><span class="area-icon">🏥</span><h3 data-en="Health &amp; Medical Aid" data-hi="स्वास्थ्य और चिकित्सा" data-mr="आरोग्य आणि वैद्यकीय मदत">Health &amp; Medical Aid</h3><p data-en="Free monthly medical camps in rural villages via mobile medical units. HIV/AIDS rehabilitation programs, preventive care and plans to establish hospitals in rural areas." data-hi="मोबाइल मेडिकल यूनिट के माध्यम से ग्रामीण गांवों में मासिक मुफ्त चिकित्सा शिविर। एचआईवी/एड्स पुनर्वास कार्यक्रम।" data-mr="मोबाईल वैद्यकीय युनिटद्वारे ग्रामीण गावांमध्ये मासिक मोफत शिबिरे. एचआयव्ही/एड्स पुनर्वसन कार्यक्रम.">Free monthly medical camps in rural villages via mobile medical units. HIV/AIDS rehabilitation programs, preventive care and plans to establish hospitals in rural areas.</p></div>
+    <div class="area-card"><span class="area-icon">👩</span><h3 data-en="Women Empowerment" data-hi="महिला सशक्तीकरण" data-mr="महिला सक्षमीकरण">Women Empowerment</h3><p data-en="Vocational training in tailoring, basket making, handicrafts, embroidery, candle making and more — creating economic independence for women across rural Maharashtra." data-hi="सिलाई, टोकरी बनाना, हस्तशिल्प, कढ़ाई में प्रशिक्षण — ग्रामीण महाराष्ट्र में महिलाओं की आर्थिक स्वतंत्रता।" data-mr="शिलाई, टोपली बनवणे, हस्तकला, भरतकाम प्रशिक्षण — ग्रामीण महाराष्ट्रातील महिलांना आर्थिक स्वातंत्र्य.">Vocational training in tailoring, basket making, handicrafts, embroidery, candle making and more — creating economic independence for women across rural Maharashtra.</p></div>
+    <div class="area-card"><span class="area-icon">🧒</span><h3 data-en="Child Welfare" data-hi="बाल कल्याण" data-mr="बाल कल्याण">Child Welfare</h3><p data-en="Nutritional support for children with HIV/AIDS and TB. Orphanages, caring homes, day care centers, pre-school centers and nurturing home environments for growth." data-hi="एचआईवी/एड्स और टीबी से पीड़ित बच्चों के लिए पोषण सहायता। अनाथालय, डे केयर सेंटर और पोषणकारी वातावरण।" data-mr="एचआयव्ही/एड्स आणि क्षयरोगग्रस्त मुलांसाठी पोषण आधार. अनाथालये, डे केअर सेंटर आणि पोषक वातावरण.">Nutritional support for children with HIV/AIDS and TB. Orphanages, caring homes, day care centers, pre-school centers and nurturing home environments for growth.</p></div>
+    <div class="area-card"><span class="area-icon">🌾</span><h3 data-en="Rural Development" data-hi="ग्रामीण विकास" data-mr="ग्रामीण विकास">Rural Development</h3><p data-en="R.O. Water Plants in rural areas for clean drinking water. Awareness about health and basic rights, and full relief support during natural calamities." data-hi="स्वच्छ पेयजल के लिए आरओ वाटर प्लांट। स्वास्थ्य और अधिकारों के बारे में जागरूकता और आपदाओं में राहत।" data-mr="स्वच्छ पेयजलासाठी आरओ वॉटर प्लांट. आरोग्य आणि हक्कांबद्दल जागरूकता आणि आपत्तींमध्ये मदत.">R.O. Water Plants in rural areas for clean drinking water. Awareness about health and basic rights, and full relief support during natural calamities.</p></div>
+    <div class="area-card"><span class="area-icon">🤝</span><h3 data-en="Community Welfare" data-hi="सामुदायिक कल्याण" data-mr="सामुदायिक कल्याण">Community Welfare</h3><p data-en="Physiotherapy centers, rehabilitation facilities, old age homes, widows caring homes, free libraries, and family counseling — building stronger communities." data-hi="फिजियोथेरेपी केंद्र, पुनर्वास सुविधाएं, वृद्धाश्रम, विधवा देखभाल घर, मुफ्त पुस्तकालय और परिवार परामर्श।" data-mr="फिजिओथेरपी केंद्रे, पुनर्वसन सुविधा, वृद्धाश्रम, विधवा काळजी गृहे, मोफत ग्रंथालये आणि कुटुंब समुपदेशन.">Physiotherapy centers, rehabilitation facilities, old age homes, widows caring homes, free libraries, and family counseling — building stronger communities.</p></div>
+    <div class="area-card"><span class="area-icon">💡</span><h3 data-en="Poverty Relief" data-hi="गरीबी निवारण" data-mr="दारिद्र्य निवारण">Poverty Relief</h3><p data-en="Relief of poverty through promotion of Basic Education, Literature, Science and Fine Arts. Family counseling and youth rehabilitation institutions for dignified living." data-hi="बुनियादी शिक्षा, साहित्य, विज्ञान और ललित कलाओं के प्रचार के माध्यम से गरीबी उन्मूलन।" data-mr="मूलभूत शिक्षा, साहित्य, विज्ञान आणि ललित कलांच्या प्रोत्साहनाद्वारे दारिद्र्य निवारण.">Relief of poverty through promotion of Basic Education, Literature, Science and Fine Arts. Family counseling and youth rehabilitation institutions for dignified living.</p></div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs" id="programs">
+  <div class="tc" style="max-width:1180px;margin:0 auto 44px">
+    <p class="sec-tag" data-en="INITIATIVES" data-hi="पहल" data-mr="उपक्रम">INITIATIVES</p>
+    <h2 class="sec-h" data-en="Our Key Programs" data-hi="हमारे प्रमुख कार्यक्रम" data-mr="आमचे प्रमुख कार्यक्रम">Our Key Programs</h2>
+    <p class="sec-p" data-en="A range of programs designed to create lasting impact in our community." data-hi="हमारे समुदाय में स्थायी प्रभाव बनाने के लिए डिज़ाइन किए गए कार्यक्रम।" data-mr="आमच्या समुदायात दीर्घकालीन प्रभाव निर्माण करण्यासाठी तयार केलेले कार्यक्रम.">A range of programs designed to create lasting impact in our community.</p>
+  </div>
+  <div class="prog-grid">
+    <div class="prog-card"><div class="prog-num">1</div><div><h4 data-en="Cricket Coaching Programme" data-hi="क्रिकेट कोचिंग कार्यक्रम" data-mr="क्रिकेट प्रशिक्षण कार्यक्रम">Cricket Coaching Programme</h4><p data-en="Free professional cricket coaching for underprivileged youth — structured training by experienced coaches targeting district, state and national competitions." data-hi="वंचित युवाओं के लिए मुफ्त पेशेवर क्रिकेट कोचिंग — अनुभवी कोचों द्वारा जिला, राज्य और राष्ट्रीय प्रतियोगिताओं को लक्षित प्रशिक्षण।" data-mr="वंचित तरुणांसाठी मोफत व्यावसायिक क्रिकेट प्रशिक्षण — अनुभवी प्रशिक्षकांकडून जिल्हा, राज्य आणि राष्ट्रीय स्पर्धांसाठी प्रशिक्षण.">Free professional cricket coaching for underprivileged youth — structured training by experienced coaches targeting district, state and national competitions.</p></div></div>
+    <div class="prog-card"><div class="prog-num">2</div><div><h4 data-en="Free Monthly Medical Camps" data-hi="मुफ्त मासिक चिकित्सा शिविर" data-mr="मोफत मासिक वैद्यकीय शिबिरे">Free Monthly Medical Camps</h4><p data-en="Mobile medical units conducting free health camps every month in rural and backward villages." data-hi="ग्रामीण और पिछड़े गांवों में हर महीने मुफ्त स्वास्थ्य शिविर।" data-mr="ग्रामीण आणि मागास गावांमध्ये दरमहा मोफत आरोग्य शिबिरे.">Mobile medical units conducting free health camps every month in rural and backward villages.</p></div></div>
+    <div class="prog-card"><div class="prog-num">3</div><div><h4 data-en="Women's Vocational Training" data-hi="महिलाओं का व्यावसायिक प्रशिक्षण" data-mr="महिलांचे व्यावसायिक प्रशिक्षण">Women's Vocational Training</h4><p data-en="Cottage industrial training in tailoring, handicrafts, basket making, food products and embroidery for women's economic independence." data-hi="महिलाओं की आर्थिक स्वतंत्रता के लिए सिलाई, हस्तशिल्प, टोकरी बनाना और कढ़ाई में प्रशिक्षण।" data-mr="महिलांच्या आर्थिक स्वातंत्र्यासाठी शिलाई, हस्तकला, टोपली बनवणे आणि भरतकाम प्रशिक्षण.">Cottage industrial training in tailoring, handicrafts, basket making, food products and embroidery for women's economic independence.</p></div></div>
+    <div class="prog-card"><div class="prog-num">4</div><div><h4 data-en="Cricket Tournaments" data-hi="क्रिकेट टूर्नामेंट" data-mr="क्रिकेट स्पर्धा">Cricket Tournaments</h4><p data-en="Organizing cricket competitions at local, state and national level — giving every athlete a platform to represent Maharashtra and India with pride." data-hi="स्थानीय, राज्य और राष्ट्रीय स्तर पर क्रिकेट प्रतियोगिताएं — हर एथलीट को महाराष्ट्र और भारत का प्रतिनिधित्व करने का मंच।" data-mr="स्थानिक, राज्य आणि राष्ट्रीय स्तरावर क्रिकेट स्पर्धा — प्रत्येक खेळाडूला महाराष्ट्र आणि भारताचे प्रतिनिधित्व करण्याचा मंच.">Organizing cricket competitions at local, state and national level — giving every athlete a platform to represent Maharashtra and India with pride.</p></div></div>
+    <div class="prog-card"><div class="prog-num">5</div><div><h4 data-en="Child Welfare &amp; Support" data-hi="बाल कल्याण और सहायता" data-mr="बाल कल्याण आणि आधार">Child Welfare &amp; Support</h4><p data-en="Nutritional and educational care for children with HIV/AIDS and TB, plus safe homes and loving environments for orphans." data-hi="एचआईवी/एड्स और टीबी से पीड़ित बच्चों के लिए पोषण और शैक्षिक देखभाल, अनाथ बच्चों के लिए सुरक्षित घर।" data-mr="एचआयव्ही/एड्स आणि क्षयरोगग्रस्त मुलांसाठी पोषण आणि शैक्षणिक काळजी, अनाथ मुलांसाठी सुरक्षित घरे.">Nutritional and educational care for children with HIV/AIDS and TB, plus safe homes and loving environments for orphans.</p></div></div>
+    <div class="prog-card"><div class="prog-num">6</div><div><h4 data-en="Rural Water Initiative" data-hi="ग्रामीण जल पहल" data-mr="ग्रामीण पाणी उपक्रम">Rural Water Initiative</h4><p data-en="Installing R.O. Water Plants in villages providing clean, safe and healthy drinking water to communities that have been denied access." data-hi="गांवों में आरओ वाटर प्लांट स्थापित करना — वंचित समुदायों को स्वच्छ, सुरक्षित पेयजल।" data-mr="गावांमध्ये आरओ वॉटर प्लांट बसवणे — वंचित समुदायांना स्वच्छ, सुरक्षित पेयजल.">Installing R.O. Water Plants in villages providing clean, safe and healthy drinking water to communities that have been denied access.</p></div></div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="tc" style="max-width:1180px;margin:0 auto 44px">
+    <p class="sec-tag" data-en="LEADERSHIP" data-hi="नेतृत्व" data-mr="नेतृत्व">LEADERSHIP</p>
+    <h2 class="sec-h" data-en="Our Office Bearers" data-hi="हमारे पदाधिकारी" data-mr="आमचे पदाधिकारी">Our Office Bearers</h2>
+    <p class="sec-p" data-en="Dedicated individuals committed to the mission of Vision Sports and Educational Association." data-hi="विजन स्पोर्ट्स एंड एजुकेशनल एसोसिएशन के मिशन के प्रति समर्पित व्यक्ति।" data-mr="विजन स्पोर्ट्स अँड एज्युकेशनल असोसिएशनच्या ध्येयासाठी समर्पित व्यक्ती.">Dedicated individuals committed to the mission of Vision Sports and Educational Association.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card"><div class="t-avatar">DK</div><h4>Dyneshwar Gopal Kadam</h4><span class="t-role" data-en="President" data-hi="अध्यक्ष" data-mr="अध्यक्ष">President</span></div>
+    <div class="team-card"><div class="t-avatar">VL</div><h4>Vikas Jagannath Lokhande</h4><span class="t-role" data-en="Vice-President" data-hi="उपाध्यक्ष" data-mr="उपाध्यक्ष">Vice-President</span></div>
+    <div class="team-card"><div class="t-avatar">AL</div><h4>Akash Jagan Lokhande</h4><span class="t-role" data-en="Secretary" data-hi="सचिव" data-mr="सचिव">Secretary</span></div>
+    <div class="team-card"><div class="t-avatar">SK</div><h4>Siddheshwar Gopal Kadam</h4><span class="t-role" data-en="Joint Secretary" data-hi="संयुक्त सचिव" data-mr="संयुक्त सचिव">Joint Secretary</span></div>
+    <div class="team-card"><div class="t-avatar">KP</div><h4>Kalyan Dagdu Patil</h4><span class="t-role" data-en="Treasurer" data-hi="कोषाध्यक्ष" data-mr="खजिनदार">Treasurer</span></div>
+    <div class="team-card"><div class="t-avatar">RB</div><h4>Ramdas Prataprao Bargule</h4><span class="t-role" data-en="Member" data-hi="सदस्य" data-mr="सदस्य">Member</span></div>
+    <div class="team-card"><div class="t-avatar">MP</div><h4>Manjusha Santosh Pangarkar</h4><span class="t-role" data-en="Member" data-hi="सदस्य" data-mr="सदस्य">Member</span></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="tc" style="max-width:1100px;margin:0 auto 40px">
+    <p class="sec-tag" style="color:var(--accent);justify-content:center" data-en="REACH US" data-hi="हमसे संपर्क करें" data-mr="आमच्याशी संपर्क करा">REACH US</p>
+    <h2 class="sec-h light" data-en="Get In Touch" data-hi="संपर्क करें" data-mr="संपर्क करा">Get In Touch</h2>
+    <p class="sec-p" style="max-width:none;white-space:nowrap" data-en="Whether you want to volunteer, donate or collaborate — we'd love to hear from you." data-hi="चाहे आप स्वयंसेवा, दान या सहयोग करना चाहते हों — हम आपसे सुनना पसंद करेंगे।" data-mr="स्वयंसेवा, देणगी किंवा सहकार्य — आम्हाला तुमच्याकडून ऐकायला आवडेल.">Whether you want to volunteer, donate or collaborate — we'd love to hear from you.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="c-info">
+      <h3 data-en="Contact Information" data-hi="संपर्क जानकारी" data-mr="संपर्क माहिती">Contact Information</h3>
+      <div class="c-detail"><div class="ci">📞</div><p><strong>Dyneshwar Kadam</strong>+91 9637753554</p></div>
+      <div class="c-detail"><div class="ci">📞</div><p><strong>Akash Lokhande</strong>+91 9130555981</p></div>
+      <div class="c-detail"><div class="ci">📍</div><p><strong data-en="Address" data-hi="पता" data-mr="पत्ता">Address</strong>c/o Kadam Gopal Dhondiram, Lokshai Colony, H.No.167, Mukundwadi, Chhatrapati Sambhajinagar — 431001</p></div>
+      <div class="c-detail"><div class="ci">🏛️</div><p><strong data-en="Registration" data-hi="पंजीकरण" data-mr="नोंदणी">Registration</strong><span data-en="Societies Registration Act, 1860 | Maharashtra" data-hi="सोसायटी पंजीकरण अधिनियम, 1860 | महाराष्ट्र" data-mr="सोसायटी नोंदणी कायदा, १८६० | महाराष्ट्र">Societies Registration Act, 1860 | Maharashtra</span></p></div>
+      <div class="c-detail"><div class="ci">📅</div><p><strong data-en="Established" data-hi="स्थापित" data-mr="स्थापना">Established</strong><span data-en="7th December 2021, Aurangabad" data-hi="7 दिसंबर 2021, औरंगाबाद" data-mr="७ डिसेंबर २०२१, औरंगाबाद">7th December 2021, Aurangabad</span></p></div>
+      <div class="c-detail"><div class="ci">🌍</div><p><strong data-en="Jurisdiction" data-hi="क्षेत्राधिकार" data-mr="क्षेत्राधिकार">Jurisdiction</strong><span data-en="Whole of Maharashtra" data-hi="संपूर्ण महाराष्ट्र" data-mr="संपूर्ण महाराष्ट्र">Whole of Maharashtra</span></p></div>
+    </div>
+    <div class="c-form">
+      <h3 data-en="Send Us a Message" data-hi="हमें संदेश भेजें" data-mr="आम्हाला संदेश पाठवा">Send Us a Message</h3>
+      <div class="form-row">
+        <div class="fg"><label data-en="Full Name" data-hi="पूरा नाम" data-mr="पूर्ण नाव">Full Name</label><input type="text" id="fn" placeholder="Your name"></div>
+        <div class="fg"><label data-en="Email" data-hi="ईमेल" data-mr="ईमेल">Email</label><input type="email" id="fe" placeholder="your@email.com"></div>
+      </div>
+      <div class="fg"><label data-en="Phone" data-hi="फोन" data-mr="फोन">Phone</label><input type="tel" id="fp" placeholder="+91 XXXXX XXXXX"></div>
+      <div class="fg">
+        <label data-en="Purpose" data-hi="उद्देश्य" data-mr="उद्देश">Purpose</label>
+        <select id="fs">
+          <option data-en="General Inquiry" data-hi="सामान्य पूछताछ" data-mr="सामान्य चौकशी">General Inquiry</option>
+          <option data-en="Volunteering" data-hi="स्वयंसेवा" data-mr="स्वयंसेवा">Volunteering</option>
+          <option data-en="Donation" data-hi="दान" data-mr="देणगी">Donation</option>
+          <option data-en="Cricket Coaching" data-hi="क्रिकेट कोचिंग" data-mr="क्रिकेट प्रशिक्षण">Cricket Coaching</option>
+          <option data-en="Partnership" data-hi="साझेदारी" data-mr="भागीदारी">Partnership</option>
+        </select>
+      </div>
+      <div class="fg"><label data-en="Message" data-hi="संदेश" data-mr="संदेश">Message</label><textarea id="fm" placeholder="Write your message here..."></textarea></div>
+      <button class="sub-btn" onclick="doSubmit()" data-en="Send Message" data-hi="संदेश भेजें" data-mr="संदेश पाठवा">Send Message</button>
+      <p class="form-msg" id="fmsg"></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-wrap">
+    <svg class="footer-logo-svg" viewBox="0 0 500 175" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="500" height="175" rx="14" fill="#1a3a6b"/>
+      <rect x="0" y="0" width="10" height="175" rx="5" fill="#e8621a"/>
+      <text x="258" y="108" text-anchor="middle" fill="white" font-family="Arial Black,Arial,sans-serif" font-size="84" font-weight="900" letter-spacing="10">VSEA</text>
+      <rect x="18" y="122" width="464" height="5" rx="2.5" fill="#e8621a" opacity="0.68"/>
+      <text x="258" y="148" text-anchor="middle" fill="rgba(255,255,255,0.78)" font-family="Arial,sans-serif" font-size="12.5" letter-spacing="2" font-weight="700">VISION SPORTS AND EDUCATIONAL ASSOCIATION</text>
+      <text x="258" y="166" text-anchor="middle" fill="rgba(255,255,255,0.38)" font-family="Arial,sans-serif" font-size="10" letter-spacing="2">CHHATRAPATI SAMBHAJINAGAR · EST. 2021</text>
+    </svg>
+  </div>
+  <p><span class="ft">Vision Sports and Educational Association</span></p>
+  <p style="margin-top:5px">Chhatrapati Sambhajinagar (formerly Aurangabad), Maharashtra, India</p>
+  <p style="margin-top:5px;font-size:12px">Registered under Societies Registration Act, 1860</p>
+  <p style="margin-top:8px;font-size:12px">Made with ❤️ for community development by <span class="ft">Anil Ghuge</span></p>
+</footer>
+
+<div class="wa-widget">
+  <div class="wa-popup" id="waPopup">
+    <div class="wa-ph">
+      <span>💬 Chat with us on WhatsApp</span>
+      <button onclick="toggleWA()">✕</button>
+    </div>
+    <a href="https://wa.me/919637753554?text=Hello%20VSEA%2C%20I%20would%20like%20to%20get%20in%20touch%20with%20you." target="_blank" class="wa-link">
+      <div class="wa-av">DK</div>
+      <div><div class="wa-nm">Dyneshwar Kadam</div><div class="wa-rl">President</div></div>
+      <span class="wa-arr">→</span>
+    </a>
+    <a href="https://wa.me/919130555981?text=Hello%20VSEA%2C%20I%20would%20like%20to%20get%20in%20touch%20with%20you." target="_blank" class="wa-link">
+      <div class="wa-av">AL</div>
+      <div><div class="wa-nm">Akash Lokhande</div><div class="wa-rl">Secretary</div></div>
+      <span class="wa-arr">→</span>
+    </a>
+  </div>
+  <button class="wa-btn" onclick="toggleWA()" title="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </button>
+</div>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+var lang='en';
+function toggleWA(){document.getElementById('waPopup').classList.toggle('open');}
+document.addEventListener('click',function(e){var w=document.querySelector('.wa-widget');if(w&&!w.contains(e.target))document.getElementById('waPopup').classList.remove('open');});
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('[data-'+l+']').forEach(function(el){
+    var v=el.getAttribute('data-'+l);
+    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA') el.placeholder=v;
+    else if(el.tagName==='OPTION') el.textContent=v;
+    else el.innerHTML=v;
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active')});
+  document.querySelector('.lang-btn[onclick="setLang(\''+l+'\')"]').classList.add('active');
+}
+function doSubmit(){
+  var n=document.getElementById('fn').value,e=document.getElementById('fe').value,m=document.getElementById('fm').value;
+  var msg=document.getElementById('fmsg');
+  var err={en:'⚠️ Please fill Name, Email & Message.',hi:'⚠️ कृपया नाम, ईमेल और संदेश भरें।',mr:'⚠️ कृपया नाव, ईमेल आणि संदेश भरा.'};
+  var ok={en:'✅ Thank you! We will get back to you soon.',hi:'✅ धन्यवाद! हम जल्द संपर्क करेंगे।',mr:'✅ धन्यवाद! आम्ही लवकरच संपर्क करू.'};
+  if(!n||!e||!m){msg.style.color='#c0392b';msg.textContent=err[lang];msg.style.display='block';return;}
+  msg.style.color='#1a5c3a';msg.textContent=ok[lang];msg.style.display='block';
+  ['fn','fe','fp','fm'].forEach(function(id){document.getElementById(id).value='';});
+}
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({behavior:'smooth'});
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+window.addEventListener('scroll',function(){
+  var b=document.getElementById('scrollTop');
+  b.style.display=window.scrollY>300?'flex':'none';
+});
+</script>
+</body>
+</html>
